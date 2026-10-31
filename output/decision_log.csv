@@ -1,0 +1,10 @@
+table,issue,decision,reason
+patients,exact duplicate rows,Remove exact duplicate rows and keep the first.,Exact duplicates would count the same record multiple times.
+patients,gender spellings that are not a code,"Strip and lowercase values, map known spellings to F, M, or X, and leave unknown or empty values missing.","The registry contains different spellings of the same gender categories, while getting rid of unknown/empty values"
+patients,site codes needing normalization,Uppercase site codes and remove spaces and hyphens.,Standardization
+patients,birth_year sentinel 9999,Replace 9999 with a missing value and convert birth_year to Int64.,Not real year
+visits,weight column named wt_kg in visits_south.csv,Rename wt_kg to weight_kg before stacking the visit files.,They both need the same name
+visits,sbp sentinel 999 and readings outside 70 through 250,Convert SBP to numeric and make 999 and values outside 70 through 250 missing.,Outside of allowed range
+visits,impossible and loosely written visit dates,Keep only exact YYYY-MM-DD values that are valid calendar dates.,Gets rid of any date not formatted correctly.
+visits,repeated patient_id and visit pairs,Sort rechecks by visit_time and keep the later reading.,retain later readings
+sites,repeated site_code rows,Keep only the current record for each site_code.,Keeping current records provides one current site record per site_code.
